@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "1a3cb2b1-5ab5-4daa-910f-c64fa6892fd0",
+		"name": "Insurancechain",
+		"description": "Postman collection for testing functions of InsuranceChain smart contract (i.e. chaincode)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get version of OBCS API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{AcmeProxyHost}}/bcsgw/rest/version",
+					"host": [
+						"{{AcmeProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"version"
+					]
+				},
+				"description": "Invoke setupAssets functions"
+			},
+			"response": []
+		},
+		{
+			"name": "Setup all required demo assets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"setupAssets\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [],\r\n\t\"proposalWaitTime\": 50000,\r\n\t\"transactionWaitTime\": 60000\r\n}"
+				},
+				"url": {
+					"raw": "{{AcmeProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{AcmeProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "For the insurancechain we have to setup some demo assets for the rest of the functions to work in this scenario "
+			},
+			"response": []
+		},
+		{
+			"name": "Read Vehicle asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"base.Vehicle\", \"JN6ND01S3GX194659\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+				},
+				"url": {
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Check if Vehicle asset is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Read non-existing asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"base.Vehicle\", \"4UZAANCP25CV68808\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+				},
+				"url": {
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Check if Vehicle asset is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Read AccidentReport asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"accident.AccidentReport\", \"1535276236\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+				},
+				"url": {
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Check if accident report asset is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Update responding ERS",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"updateReport\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276236\", \"NYPD 34th Precinct\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+				},
+				"url": {
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Update the existing accident report"
+			},
+			"response": []
+		},
+		{
+			"name": "Update accident description and vehicle",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"updateReport\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276236\", \"NYPD 34th Precinct\", \"Nose to tail collision\", \"1HTZR0007JH586991\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+				},
+				"url": {
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Update the existing accident report"
+			},
+			"response": []
+		},
+		{
+			"name": "Read updated AccidentReport asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"accident.AccidentReport\", \"1535276236\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+				},
+				"url": {
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Check the accident report asset is updated"
+			},
+			"response": []
+		},
+		{
+			"name": "Issue insurance policy to JN6ND01S3GX194659",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"issuePolicy\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"State of New York\", \"2018-08-01T00:00:00.000Z\", \"2020-08-01T00:00:00.000Z\", \"JN6ND01S3GX194659\", \"USA\", \"AX203\", \"3459802\", \"AF\", \"BMW\", \"US,CA,MX\", \"908123764\", \"AllSecur Insurance\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+				},
+				"url": {
+					"raw": "{{AllSecurProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{AllSecurProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Issue a new insurance policy for the vehicle with id JN6ND01S3GX194659"
+			},
+			"response": []
+		},
+		{
+			"name": "Request a quote estimation for vehicle repairs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"requestQuote\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276236\", \"USA-AX203-3459802\", \"Scratch on back bumper (2x0.1 inches)\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+				},
+				"url": {
+					"raw": "{{AutoLeaseProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{AutoLeaseProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Request a quote estimation for vehicle repairs for insurance policy with ID USA-AX203-3459802"
+			},
+			"response": []
+		},
+		{
+			"name": "Read QuoteRequest asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"vehiclerepair.QuoteRequest\", \"1535276348\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+				},
+				"url": {
+					"raw": "{{AutoLeaseProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{AutoLeaseProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Check the QuoteRequest asset is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Offer quote for vehicle repair",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"offerQuote\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276348\", \"USA Automotive NYC\", \"[{\\\"type\\\":\\\"REPAIR\\\",\\\"description\\\":\\\"Scratch removal\\\",\\\"costOfRefinish\\\":30.6,\\\"costOfLabor\\\":100.0,\\\"totalCost\\\":130.6}]\", \"11\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+				},
+				"url": {
+					"raw": "{{UsaAutoProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{UsaAutoProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Offer a quote estimation for vehicle repairs linked to quote request "
+			},
+			"response": []
+		},
+		{
+			"name": "Read RepairQuote asset",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"vehiclerepair.RepairQuote\", \"1535276378\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+				},
+				"url": {
+					"raw": "{{UsaAutoProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{UsaAutoProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Check the RepairQuote asset is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Send insurance claim",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"sendClaim\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535137974\", \"USA-AX203-3459802\", \"USA-AS204-1042919\", \"1535219101\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+				},
+				"url": {
+					"raw": "{{AllSecurProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{AllSecurProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"invocation"
+					]
+				},
+				"description": "Offer a quote estimation for vehicle repairs linked to quote request "
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2f21d0b2-e5e3-4116-9982-61b06d49df12",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "540c085c-ab4b-47d3-9a3a-1f34ea6b1dbe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
