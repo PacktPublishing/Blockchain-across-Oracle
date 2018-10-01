@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a3cb2b1-5ab5-4daa-910f-c64fa6892fd0",
+		"_postman_id": "bbdd3c5f-7907-4755-93f0-05890e0bff6a",
 		"name": "Insurancechain",
 		"description": "Postman collection for testing functions of InsuranceChain smart contract (i.e. chaincode)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -73,10 +73,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"base.Vehicle\", \"JN6ND01S3GX194659\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"base.Vehicle\", \"JN6ND01S3GX194659\"]\r\n}"
 				},
 				"url": {
-					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/query",
 					"host": [
 						"{{ErsProxyHost}}"
 					],
@@ -85,7 +85,7 @@
 						"rest",
 						"v1",
 						"transaction",
-						"invocation"
+						"query"
 					]
 				},
 				"description": "Check if Vehicle asset is created"
@@ -104,12 +104,43 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"base.Vehicle\", \"4UZAANCP25CV68808\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"base.Vehicle\", \"4UZAANCP25CV68808\"]\r\n}"
 				},
 				"url": {
-					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/query",
 					"host": [
 						"{{ErsProxyHost}}"
+					],
+					"path": [
+						"bcsgw",
+						"rest",
+						"v1",
+						"transaction",
+						"query"
+					]
+				},
+				"description": "Check if Vehicle asset is created"
+			},
+			"response": []
+		},
+		{
+			"name": "Report new Accident",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"channel\": \"insurancechain\",\r\n   \"chaincode\": \"insurancechain\",\r\n   \"method\": \"reportAccident\",\r\n   \"chaincodeVer\":  \"v2\",\r\n   \"args\": [\"40.849496\",\"-73.936206\",\r\n            \"2018-08-24T17:39:20.325Z\",\"JN6ND01S3GX194659\"],\r\n   \"proposalWaitTime\": 50000,\r\n   \"transactionWaitTime\": 60000\r\n}"
+				},
+				"url": {
+					"raw": "{{AcmeProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"host": [
+						"{{AcmeProxyHost}}"
 					],
 					"path": [
 						"bcsgw",
@@ -119,7 +150,7 @@
 						"invocation"
 					]
 				},
-				"description": "Check if Vehicle asset is created"
+				"description": "Report a new Accident"
 			},
 			"response": []
 		},
@@ -135,10 +166,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"accident.AccidentReport\", \"1535276236\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"accident.AccidentReport\", \"1537811302\"]\r\n}"
 				},
 				"url": {
-					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/query",
 					"host": [
 						"{{ErsProxyHost}}"
 					],
@@ -147,7 +178,7 @@
 						"rest",
 						"v1",
 						"transaction",
-						"invocation"
+						"query"
 					]
 				},
 				"description": "Check if accident report asset is created"
@@ -166,7 +197,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"updateReport\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276236\", \"NYPD 34th Precinct\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"updateReport\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1537811302\", \"NYPD 34th Precinct\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
 				},
 				"url": {
 					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
@@ -197,7 +228,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"updateReport\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276236\", \"NYPD 34th Precinct\", \"Nose to tail collision\", \"1HTZR0007JH586991\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"updateReport\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1537811302\", \"NYPD 34th Precinct\", \"Nose to tail collision\", \"1HTZR0007JH586991\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
 				},
 				"url": {
 					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
@@ -228,10 +259,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"accident.AccidentReport\", \"1535276236\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"accident.AccidentReport\", \"1537811302\"]\r\n}"
 				},
 				"url": {
-					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"raw": "{{ErsProxyHost}}/bcsgw/rest/v1/transaction/query",
 					"host": [
 						"{{ErsProxyHost}}"
 					],
@@ -240,7 +271,7 @@
 						"rest",
 						"v1",
 						"transaction",
-						"invocation"
+						"query"
 					]
 				},
 				"description": "Check the accident report asset is updated"
@@ -290,7 +321,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"requestQuote\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276236\", \"USA-AX203-3459802\", \"Scratch on back bumper (2x0.1 inches)\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"requestQuote\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1537811302\", \"USA-AX203-3459802\", \"Scratch on back bumper (2x0.1 inches)\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
 				},
 				"url": {
 					"raw": "{{AutoLeaseProxyHost}}/bcsgw/rest/v1/transaction/invocation",
@@ -321,10 +352,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"vehiclerepair.QuoteRequest\", \"1535276348\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"vehiclerepair.QuoteRequest\", \"1537811735\"]\r\n}"
 				},
 				"url": {
-					"raw": "{{AutoLeaseProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"raw": "{{AutoLeaseProxyHost}}/bcsgw/rest/v1/transaction/query",
 					"host": [
 						"{{AutoLeaseProxyHost}}"
 					],
@@ -333,7 +364,7 @@
 						"rest",
 						"v1",
 						"transaction",
-						"invocation"
+						"query"
 					]
 				},
 				"description": "Check the QuoteRequest asset is created"
@@ -352,7 +383,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"offerQuote\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535276348\", \"USA Automotive NYC\", \"[{\\\"type\\\":\\\"REPAIR\\\",\\\"description\\\":\\\"Scratch removal\\\",\\\"costOfRefinish\\\":30.6,\\\"costOfLabor\\\":100.0,\\\"totalCost\\\":130.6}]\", \"11\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"offerQuote\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1537811735\", \"USA Automotive NYC\", \"[{\\\"type\\\":\\\"REPAIR\\\",\\\"description\\\":\\\"Scratch removal\\\",\\\"costOfLabor\\\":100.0,\\\"costOfRefinish\\\":30.6,\\\"totalCost\\\":130.6}]\", \"11\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
 				},
 				"url": {
 					"raw": "{{UsaAutoProxyHost}}/bcsgw/rest/v1/transaction/invocation",
@@ -383,19 +414,19 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"vehiclerepair.RepairQuote\", \"1535276378\"],\r\n\t\"proposalWaitTime\": 5000,\r\n\t\"transactionWaitTime\": 6000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"readAssetData\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"vehiclerepair.RepairQuote\", \"1537811904\"]\r\n}"
 				},
 				"url": {
-					"raw": "{{UsaAutoProxyHost}}/bcsgw/rest/v1/transaction/invocation",
+					"raw": "{{AutoLeaseProxyHost}}/bcsgw/rest/v1/transaction/query",
 					"host": [
-						"{{UsaAutoProxyHost}}"
+						"{{AutoLeaseProxyHost}}"
 					],
 					"path": [
 						"bcsgw",
 						"rest",
 						"v1",
 						"transaction",
-						"invocation"
+						"query"
 					]
 				},
 				"description": "Check the RepairQuote asset is created"
@@ -414,7 +445,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"sendClaim\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1535137974\", \"USA-AX203-3459802\", \"USA-AS204-1042919\", \"1535219101\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
+					"raw": "{\r\n\t\"channel\":  \"insurancechain\",\r\n\t\"chaincode\":  \"insurancechain\",\r\n\t\"method\":  \"sendClaim\",\r\n\t\"chaincodeVer\":  \"v2\",\r\n\t\"args\":  [\"1537811302\", \"USA-AX203-3459802\", \"USA-AS204-1042919\", \"1537811904\"],\r\n\t\"proposalWaitTime\": 25000,\r\n\t\"transactionWaitTime\": 30000\r\n}"
 				},
 				"url": {
 					"raw": "{{AllSecurProxyHost}}/bcsgw/rest/v1/transaction/invocation",
@@ -438,13 +469,13 @@
 		"type": "basic",
 		"basic": [
 			{
-				"key": "username",
-				"value": "",
+				"key": "password",
+				"value": "K44rt3nhuis#!",
 				"type": "string"
 			},
 			{
-				"key": "password",
-				"value": "",
+				"key": "username",
+				"value": "robert.van.molken@amis.nl",
 				"type": "string"
 			}
 		]
