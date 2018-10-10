@@ -538,7 +538,7 @@ func (t *InsuranceChaincode) requestQuote(stub shim.ChaincodeStubInterface, args
 	var vehicleReg string
 	vehicleReg = insurancePolicy.RegisteredVehicle
 	if _, ok := vmap[vehicleReg]; ok {
-		return shim.Error("Insured vehicle is not involved accident: " + vehicleReg)
+		return shim.Error("Insured vehicle is not involved in accident: " + vehicleReg)
 	}
 
 	// === Retrieve insured vehicle
@@ -787,8 +787,7 @@ func (t *InsuranceChaincode) issuePolicy(stub shim.ChaincodeStubInterface, args 
 	var vehicle Vehicle
 	if err = json.Unmarshal(vehicleAsBytes, &vehicle); err != nil {
 		return shim.Error("Failed to unmarshal vehicle asset: " + err.Error())
-	}
-	// TODO check if vehicle is not already insured
+	}	
 
 	// === Check if policy holder exists
 	holderRef := fmt.Sprintf("%s#%s", "base.Registrant", policyHolder)
@@ -921,13 +920,13 @@ func (t *InsuranceChaincode) sendClaim(stub shim.ChaincodeStubInterface, args []
 	// Check if registered vehicle of claimant is involved in accident
 	vehicleClaimantRef := claimantPolicy.RegisteredVehicle
 	if _, ok := vmap[vehicleClaimantRef]; ok {
-		return shim.Error("Insured vehicle of claimant is not involved accident: " + vehicleClaimantRef)
+		return shim.Error("Insured vehicle of claimant is not involved in accident: " + vehicleClaimantRef)
 	}
 
 	// Check if registered vehicle of defendant is involved in accident
 	vehicleDefendantRef := defendantPolicy.RegisteredVehicle
 	if _, ok := vmap[vehicleDefendantRef]; ok {
-		return shim.Error("Insured vehicle of claimant is not involved accident: " + vehicleDefendantRef)
+		return shim.Error("Insured vehicle of claimant is not involved in accident: " + vehicleDefendantRef)
 	}
 
 	// === Check if RepairQuote asset exists
