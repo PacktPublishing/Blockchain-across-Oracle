@@ -418,7 +418,7 @@ func (t *InsuranceChaincode) updateReport(stub shim.ChaincodeStubInterface, args
 		accidentReport.RespondingERS = ersRef
 		reason = fmt.Sprintf("Emergencency Services (%s) responding to accident", respondingERS)
 	} else {
-		return shim.Error("Emergency Services alsready responding: " + accidentReport.RespondingERS)
+		return shim.Error("Emergency Services already responding: " + accidentReport.RespondingERS)
 	}
 
 	// === Check if description is given
