@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.17;
 
 /// @title Voting for event proposals 
 contract Ballot {
@@ -23,7 +23,7 @@ contract Ballot {
 
   // A dynamically-sized array of `Proposal` structs.
   Proposal[] public proposals;
-
+  
   /// Create a new ballot to choose one of `proposalNames`.
   function Ballot(bytes32[] proposalNames) public {
     chairperson = msg.sender;
@@ -35,7 +35,7 @@ contract Ballot {
       // `Proposal({...})` creates a temporary Proposal object 
       // and proposals.push`appends it to the end of proposals
       proposals.push(Proposal({
-        name: proposalNames[i],
+        name: proposalNames[i], 
         voteCount: 0
       }));
     }
@@ -49,9 +49,7 @@ contract Ballot {
     // Ether balances. It is often a good idea to use this if 
     // functions are called incorrectly.
     require(
-      (msg.sender == chairperson) &&
-      !voters[voter].voted &&
-      (voters[voter].weight == 0)
+      (msg.sender == chairperson) && !voters[voter].voted && (voters[voter].weight == 0)
     );
     voters[voter].weight = 1;
   }
